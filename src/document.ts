@@ -1,5 +1,21 @@
 import * as crypto from 'crypto';
 
+class Document {
+    name: string;
+    current: string;
+    commits: Array<Commit>;
+    branches: Array<Branch>;
+
+    constructor(name: string) {
+        this.name = name;
+        this.current = 'master';
+        this.commits = [];
+        this.branches = [
+            new Branch('master', null)
+        ];
+    }
+}
+
 class Commit {
     id: string;
     message: string;
