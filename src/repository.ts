@@ -1,7 +1,7 @@
 import * as branch from './branch';
 import * as commit from './commit';
 
-class Document {
+class Repository {
     name: string;
     current: string;
     commits: Array<commit.Commit>;
@@ -17,26 +17,26 @@ class Document {
     }
 }
 
-function from(obj: any): Promise<Document> {
+function from(obj: any): Promise<Repository> {
     return new Promise(async (resolve, reject) => {
-        const document: Document = new Document(obj.name);
-        document.current = obj.current;
+        const repository: Repository = new Repository(obj.name);
+        repository.current = obj.current;
         if ((obj.commits.length > 0) && !(obj.commits[0] instanceof commit.Commit)) {
             obj.commits.forEach((element: any) => {
                 commit.from(element);
             });
         }
-        document.commits = obj.commits;
+        repository.commits = obj.commits;
         if ((obj.branches.length > 0) && !(obj.branches[0] instanceof branch.Branch)) {
             obj.branches.forEach((element: any) => {
                 branch.from(element);
             });
         }
-        document.branches = obj.branches;
-        resolve(document);
+        repository.branches = obj.branches;
+        resolve(repository);
     });
 }
 
 export {
-    Document, from
+    Repository, from
 };
