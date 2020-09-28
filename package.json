@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sjy5386/realfinal/issues"
   },
-  "homepage": "https://github.com/sjy5386/realfinal#readme"
+  "homepage": "https://github.com/sjy5386/realfinal#readme",
+  "dependencies": {
+    "@types/node": "^14.11.2"
+  }
 }
