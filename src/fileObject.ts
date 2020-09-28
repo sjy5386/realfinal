@@ -10,19 +10,17 @@ class FileObject {
     }
 }
 
-function readFile(path: string, filename: string): Promise<FileObject> {
+function read(path: string, filename: string): Promise<FileObject> {
     return new Promise(async (resolve, reject) => {
         const buf: Buffer = await fs.promises.readFile(path);
         resolve(new FileObject(filename, buf));
     });
 }
 
-function writeFile(path: string, fileObject: FileObject): Promise<void> {
-    return new Promise(async (resolve, reject) => {
-        await fs.promises.writeFile(path, Buffer.from(fileObject.data, 'base64'));
-    });
+async function write(path: string, fileObject: FileObject): Promise<void> {
+    await fs.promises.writeFile(path, Buffer.from(fileObject.data, 'base64'));
 }
 
 export {
-    FileObject, readFile, writeFile
+    FileObject, read, write
 };
